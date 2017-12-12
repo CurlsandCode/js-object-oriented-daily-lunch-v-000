@@ -72,4 +72,36 @@ class Employer {
 
     store.employers.push(this);
   }
+  mealTotals() {
+   let allMeals = this.deliveries().map(delivery => {
+     return delivery.meal();
+   });
+   let summaryObject = {};
+   allMeals.forEach(function(meal) {
+     summaryObject[meal.id] = 0;
+   });
+   allMeals.forEach(function(meal) {
+     summaryObject[meal.id] += 1;
+   });
+   return summaryObject;
+ }
+ employees() {
+   return store.customers.filter(customer => {
+     return customer.employerId == this.id;
+   });
+ }
+ deliveries() {
+   let allDeliveries = this.employees().map(employee => {
+     return employee.deliveries();
+   });
+   let merged = [].concat.apply([], allDeliveries);
+   return merged;
+ }
+ meals() {
+   let allMeals = this.deliveries().map(delivery => {
+     return delivery.meal();
+   });
+   let uniqueMeals = [...new Set(allMeals)];
+   return uniqueMeals;
+ }
 }
