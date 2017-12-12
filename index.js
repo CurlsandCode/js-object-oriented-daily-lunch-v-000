@@ -18,7 +18,7 @@ class Meal {
     this.title = title;
     this.price = price;
     this.id = ++mealId;
-    
+
     store.meals.push(this);
   }
 }
@@ -44,7 +44,7 @@ class Employer {
   constructor(name){
     this.name = name;
     this.id = ++employerId;
-    
+
     store.employers.push(this);
   }
 }
