@@ -10,6 +10,21 @@ class Customer {
     }
     store.customers.push(this);
   }
+  totalSpent() {
+    return this.meals().reduce(function(sum, meal) {
+      return sum + meal.price;
+    }, 0);
+  }
+  deliveries() {
+    return store.deliveries.filter(delivery => {
+      return delivery.customerId == this.id;
+    });
+  }
+  meals() {
+    return this.deliveries().map(delivery => {
+      return delivery.meal();
+    });
+  }
 }
 
 let mealId = 0;
